@@ -1,4 +1,4 @@
-package com.eduhub.Employee.repository;
+package com.eduhub.Employee.repository.impl;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

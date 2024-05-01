@@ -1,8 +1,8 @@
-package com.eduhub.Employee.repository;
+package com.spring.mongo.demo.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.eduhub.Employee.Model.Employee;
+import com.spring.mongo.demo.model.Employee;
 
 import java.util.List;
 

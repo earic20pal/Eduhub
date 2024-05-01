@@ -1,27 +1,22 @@
-package com.eduhub.Employee.Service;
-
+package com.eduhub.Employee.repository.impl;
 
 import java.util.List;
 
 import com.eduhub.Employee.Model.Employee;
 
 
-public interface EmployeeService {
+public interface EmployeeQueryDao {
 	
 	List<Employee> getAll();
 
 	List<Employee> getEmployeeByFirstName(String firstName);
 
-	Employee getOneEmployeeByFirstName(String firstName);
+	Employee getSingleEmployeeByFirstName(String firstName);
 
 	List<Employee> getEmployeeByFirstNameLike(String firstName);
 
-	Employee getEmployeeById(int empId);
-	
-	Employee getEmployeeByLastName(String lastName);
+	Employee getSingleEmployeeByLastName(String lastName);
 
 	List<Employee> getEmployeeBySalaryGreaterThan(int salary);
-	
-	List<Employee> getEmployeeByCondition(Employee employee);
 
 }

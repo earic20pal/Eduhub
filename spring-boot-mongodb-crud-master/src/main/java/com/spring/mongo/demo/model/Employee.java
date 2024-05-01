@@ -1,4 +1,4 @@
-package com.eduhub.Employee.Model;
+package com.spring.mongo.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

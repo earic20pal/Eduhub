@@ -1,10 +1,9 @@
-package com.eduhub.Employee.Service;
+package com.spring.mongo.demo.service;
 
 
 import java.util.List;
 
-import com.eduhub.Employee.Model.Employee;
-
+import com.spring.mongo.demo.model.Employee;
 
 public interface EmployeeService {
 	
