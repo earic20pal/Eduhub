@@ -1,8 +1,14 @@
 package com.eduhub.Employee.Service.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,23 +22,21 @@ import com.eduhub.Employee.repository.EmployeeRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-	
 
 	@Autowired
 	private EmployeeRepository repository;
-	
 
-	
 	@Override
 	public List<Employee> getAll() {
-		return repository.findAll();
+		List<Employee> list = repository.findAll();
+		return list;
 	}
-	
+
 	@Override
 	public Employee getEmployeeByLastName(String lastName) {
-		
+
 		List<Employee> employees = repository.findAll();
-		
+
 		for (Employee emp : employees) {
 			if (emp.getLastName().equalsIgnoreCase(lastName))
 				return emp;
@@ -113,9 +117,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employees;
 	}
 
-	
-	
-	
 	@Override
 	public List<Employee> getEmployeeByCondition(Employee employee) {
 		List<Employee> list = repository.findAll();
@@ -185,5 +186,34 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// || null != employee.getLastName() || employee.getSalary() > 0))
 		return employees;
 	}
+
+	public String upload() {
+
+		  try {
+		   String filename = "C:\\Users\\Admin\\OneDrive\\Desktop\\exceldatabase.xlsx";
+		   try (FileInputStream file = new FileInputStream(new File(filename))) {
+		    Workbook workbook = WorkbookFactory.create(file);
+		    Sheet sheet = workbook.getSheetAt(0);
+		    Row row;
+		    System.out.println("last row number is=========" + sheet.getLastRowNum());
+		    for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+		     row = sheet.getRow(i);
+		     int empId = (int)(row.getCell(0).getNumericCellValue());
+		     String firstName = row.getCell(1).getStringCellValue();
+		     String lastName = row.getCell(2).getStringCellValue();
+		     float salary = (float) row.getCell(3).getNumericCellValue();
+			 int positionId = (int) row.getCell(4).getNumericCellValue();
+			 Employee emp = new Employee();
+			 emp.builder().empId(empId).firstName(firstName).lastName(lastName).salary(salary).positionId(positionId).build();
+		     repository.save(emp);
+			 System.out.println("Records inserted.........." + i);
+		    }
+		    System.out.println("");
+		   }
+		  } catch (Exception e) {
+		 }
+
+	return null;
+}
 
 }

@@ -24,4 +24,6 @@ public interface EmployeeService {
 	
 	List<Employee> getEmployeeByCondition(Employee employee);
 
+	String upload();
+
 }

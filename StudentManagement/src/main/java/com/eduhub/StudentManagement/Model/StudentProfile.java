@@ -1,5 +1,9 @@
-package com.eduhub.Employee.Model;
+package com.eduhub.StudentManagement.Model;
 
+import java.io.Serializable;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,29 +11,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.io.Serializable;
-
-@Document(collection = "Employee")
+@Document(collection = "StudentProfile")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Employee implements Serializable {
-
+public class StudentProfile implements Serializable {
 	@Id
 	private String id;
-	
-	private int empId;
+	private int studentProfileId;
 	private String firstName;
 	private String lastName;
 	private float salary;
 	private String position;
 	private int positionId;
-	
-
 }

@@ -11,14 +11,14 @@ import com.eduhub.Employee.Configuration.Configuration;
 @RestController
 public class HelloController {
 	
-	@Autowired
-	private Configuration configuration;
-
-	@GetMapping("/limits")
-	public Limits retrieveLimits() {
-		return new Limits(configuration.getMinimum(), 
-				configuration.getMaximum());
-//		return new Limits(1,1000);
-	}
+//	@Autowired
+//	private Configuration configuration;
+//
+//	@GetMapping("/limits")
+//	public Limits retrieveLimits() {
+//		return new Limits(configuration.getMinimum(), 
+//				configuration.getMaximum());
+////		return new Limits(1,1000);
+//	}
 
 }

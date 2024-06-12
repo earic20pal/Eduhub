@@ -1,4 +1,4 @@
-package com.eduhub.Employee;
+package com.eduhub.StudentManagement;
 
 import java.util.List;
 
@@ -11,33 +11,33 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.eduhub.Employee.Model.Employee;
-import com.eduhub.Employee.repository.EmployeeRepository;
-import com.eduhub.Employee.util.HelperUtil;
+import com.eduhub.StudentManagement.Model.StudentProfile;
+import com.eduhub.StudentManagement.Repository.StudentProfileRepository;
+import com.eduhub.StudentManagement.util.HelperUtil;
 
 @SpringBootApplication
 @EnableMongoRepositories
-public class EmployeeApplication {
-
+public class StudentManagementApplication {
+	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	public static void main(String[] args) {
-		SpringApplication.run(EmployeeApplication.class, args);
+		SpringApplication.run(StudentManagementApplication.class, args);
 	}
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private StudentProfileRepository studentProfileRepository ;
 
 	@Autowired
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
-			List<Employee> employees = employeeRepository.findAll();
+			List<StudentProfile> employees = studentProfileRepository.findAll();
 			if (employees.size() == 0) {
 				logger.info("=====inserting data========");
 				logger.info("data is ");
-				System.out.print("data-------------->"+HelperUtil.EmployeeSupplier.get());
-//				employeeRepository.saveAll(HelperUtil.EmployeeSupplier.get());
+				System.out.print("data-------------->"+HelperUtil.StudentProfileSupplier.get());
+				studentProfileRepository.saveAll(HelperUtil.StudentProfileSupplier.get());
 			} 
 		};
 	}
